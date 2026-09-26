@@ -4,6 +4,36 @@ A private document workspace built with Next.js, FastAPI, PostgreSQL/pgvector, R
 
 The application uses real provider interfaces. Normal tests replace AI calls with deterministic providers contained only in `backend/tests`; production images exclude those modules.
 
+## See the project
+
+A working tour of the document workspace: upload files, organize a collection, find a passage, ask a question, and open its source.
+
+**Real browser captures, fictional demo data.** These screenshots use the local test server with deterministic AI, an isolated PGlite/pgvector database, test Redis, and temporary file storage. The answer shown is a retrieved excerpt returned by the test provider. See the [full walkthrough](docs/walkthrough.md) for all 13 screenshots and the verified steps.
+
+### Workspace overview
+
+Track indexed documents, processing, recent files, and saved conversations.
+
+[![KnowledgePilot dashboard showing three indexed documents and a saved conversation](docs/screenshots/02-dashboard.png)](docs/screenshots/02-dashboard.png)
+
+### Upload and organize documents
+
+Upload PDF, Word, Markdown, or text files. Processing runs in the background, and the library shows when each file is ready.
+
+[![Document upload dialog with three successfully uploaded sample files](docs/screenshots/03-upload.png)](docs/screenshots/03-upload.png)
+
+[![Document library with ready PDF, Markdown, and text files](docs/screenshots/04-documents.png)](docs/screenshots/04-documents.png)
+
+### Ask a question and follow the evidence
+
+Choose the source documents, ask a question, and inspect the cited passage with its page reference.
+
+[![Conversation scoped to the Orion specification with an answer and page citation](docs/screenshots/07-chat.png)](docs/screenshots/07-chat.png)
+
+[![Citation dialog displaying the original passage, page number, and download controls](docs/screenshots/08-citation.png)](docs/screenshots/08-citation.png)
+
+**Explore more:** [Collections](docs/walkthrough.md#5-organize-collections) · [Search](docs/walkthrough.md#6-search-the-knowledge-base) · [Source inspection](docs/walkthrough.md#9-inspect-the-source-document) · [Dark mode](docs/walkthrough.md#12-switch-to-dark-mode) · [Mobile](docs/walkthrough.md#13-continue-on-mobile)
+
 ## Run with Docker Compose
 
 Requirements: Docker Engine with Compose v2 and an OpenAI API key for embeddings and generation.
