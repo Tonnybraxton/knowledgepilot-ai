@@ -1,0 +1,22 @@
+# Disposable infrastructure only; intentionally separate from development volumes.
+name: knowledgepilot-test
+services:
+  postgres:
+    image: pgvector/pgvector:pg18
+    environment:
+      POSTGRES_USER: pilot_test
+      POSTGRES_PASSWORD: test_only
+      POSTGRES_DB: pilot_test
+    ports: ["127.0.0.1:55432:5432"]
+    tmpfs: [/var/lib/postgresql]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U pilot_test -d pilot_test"]
+      interval: 2s
+      retries: 30
+  redis:
+    image: redis:7.4-alpine
+    ports: ["127.0.0.1:56379:6379"]
+    healthcheck:
+      test: [CMD, redis-cli, ping]
+      interval: 2s
+      retries: 30
